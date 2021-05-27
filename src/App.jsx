@@ -6,8 +6,6 @@ import { Motor } from '@motor-js/engine'
 function App() {
 
  const { engine } = useConnect()
-
- console.log(engine)
  
   return (
     <div>
