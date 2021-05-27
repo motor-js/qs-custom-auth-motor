@@ -1,6 +1,7 @@
 import { useState } from 'react'
 const enigma = require("enigma.js");
 const schema = require("enigma.js/schemas/12.170.2.json");
+const fs = require('fs');
 
 const useConnect = () => {
 
@@ -18,7 +19,10 @@ const useConnect = () => {
     const userId = 'your-sense-user';
     // Path to a local folder containing the Sense Enterprise exported certificates:
     const certificatesPath = './';
+
     // Helper function to read the contents of the certificate files:
+    // Not tested in the client
+    const readCert = filename => fs.readFileSync(path.resolve(__dirname, certificatesPath, filename));
 
     const [engine, setEngine] = useState(() => {
         (async () => {
@@ -27,7 +31,7 @@ const useConnect = () => {
                 // ws for http / wss for https
                 url: `ws://${engineHost}:${enginePort}/app/${appId}`,
                 createSocket: url => new WebSocket(url)
-            
+           
                 // See below for certificate example. when connecting to the Websocket
                 /*createSocket: (url) => new WebSocket(url, {
                     ca: [readCert('root.pem')],
