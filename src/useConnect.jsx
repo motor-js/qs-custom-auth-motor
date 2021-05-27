@@ -7,7 +7,7 @@ const useConnect = () => {
     // Your Sense Enterprise installation hostname:
     const engineHost = 'localhost';
     // Make sure the port below is accessible from the machine where this example
-    // is executed. If you changed the QIX Engine port in your installation, change this:
+    // is executed. You will need to change this, below is pointing to QS Desktop engine
     const enginePort = 4848;
     // Change this to an existing app id on your Qlik site
     const appId = 'Wine Analysis.qvf';
