@@ -6,24 +6,7 @@ const path = require('path');
 
 const useConnect = () => {
 
-    // Your Sense Enterprise installation hostname:
-    const engineHost = 'localhost';
-    // Make sure the port below is accessible from the machine where this example
-    // is executed. You will need to change this, below is pointing to QS Desktop engine
-    const enginePort = 4848;
-    // Change this to an existing app id on your Qlik site
-    const appId = 'Wine Analysis.qvf';
-    // The Sense Enterprise-configured user directory for the user you want to identify
-    // as:
-    const userDirectory = 'your-sense-user-directory';
-    // The user to use when creating the session:
-    const userId = 'your-sense-user';
-    // Path to a local folder containing the Sense Enterprise exported certificates:
-    const certificatesPath = './';
-
-    // Helper function to read the contents of the certificate files:
-    // Not tested in the client
-    const readCert = filename => fs.readFileSync(path.resolve(__dirname, certificatesPath, filename));
+    // INSERT CUSTOM CONNECTION LOGIC TO CONNECT TO YOUR QLIK SENSE ENTERPRISE SITE...
 
     const [engine, setEngine] = useState(() => {
         (async () => {
@@ -32,16 +15,7 @@ const useConnect = () => {
                 // ws for http / wss for https
                 url: `ws://${engineHost}:${enginePort}/app/${appId}`,
                 createSocket: url => new WebSocket(url)
-           
-                // See below for certificate example. when connecting to the Websocket
-                /*createSocket: (url) => new WebSocket(url, {
-                    ca: [readCert('root.pem')],
-                    key: readCert('client_key.pem'),
-                    cert: readCert('client.pem'),
-                    headers: {
-                    'X-Qlik-User': `UserDirectory=${encodeURIComponent(userDirectory)}; UserId=${encodeURIComponent(userId)}`,
-                    },
-                }),*/
+     
                 });
             
                 session.on("suspended", () => {
